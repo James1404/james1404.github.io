@@ -1,0 +1,28 @@
+{
+  "name": "portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.2.6",
+    "@astrojs/react": "^4.2.7",
+    "@fontsource-variable/outfit": "^5.2.5",
+    "@tailwindcss/vite": "^4.1.5",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.3",
+    "astro": "^5.7.10",
+    "gsap": "^3.13.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^22.15.3"
+  }
+}

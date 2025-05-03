@@ -1,0 +1,18 @@
+---
+interface Props {
+    name: string;
+    desc?: string;
+    link: string;
+}
+
+const { name, link } = Astro.props;
+---
+
+<div class="flex items-center gap-5 w-full py-5">
+    <a
+        href={`#${link}`}
+        class="cat text-nowrap hover:bg-text hover:text-background transition"
+        >See more</a
+    >
+    <div class="text-nowrap">{name}</div>
+</div>

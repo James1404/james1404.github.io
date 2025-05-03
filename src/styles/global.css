@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --font-sans: "Outfit Variable", "sans-serif";
+    --color-background: #fff;
+    --color-link: #000;
+    --color-text: #000;
+}
+
+@layer components {
+    .cat {
+        @apply bg-transparent w-fit rounded border-[1px] border-text px-4 py-2 transition-colors hover:text-background hover:bg-text;
+    }
+}
+
+@layer base {
+    /* html {
+        font-size: clamp(0.9rem, 0.9rem + ((1vw - 0.2rem) * 0.75), 1.5rem);
+        line-height: 1.7;
+    } */
+
+    a {
+        text-decoration: underline;
+        color: var(--color-link);
+    }
+
+    h1 {
+        @apply text-5xl;
+    }
+
+    h2 {
+        @apply text-4xl underline my-10;
+    }
+
+    h3 {
+        @apply text-3xl my-5;
+    }
+
+    h4 {
+        @apply text-2xl my-3;
+    }
+
+    a {
+        @apply underline;
+    }
+
+    p {
+        @apply my-1 text-xl;
+    }
+
+    section {
+        @apply flex flex-col items-center justify-center w-[80%];
+    }
+
+    article {
+        @apply py-5 flex flex-col justify-center items-center w-[80%];
+    }
+
+    input,
+    textarea {
+        @apply bg-transparent rounded border-[1px] border-text px-4 py-2;
+    }
+
+    input[type="submit"] {
+        @apply bg-text text-background cursor-pointer;
+    }
+
+    hr {
+        @apply mx-auto border-b-[1px] border-text w-full m-5;
+    }
+
+    ul {
+        @apply list-disc list-inside;
+    }
+}

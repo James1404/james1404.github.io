@@ -1,0 +1,158 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import Navbar from "../components/navbar.astro";
+import Project from "../components/project.astro";
+import ProjectLink from "../components/project-link.astro";
+
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+import { getEntries } from "astro:content";
+import { getEntry } from "astro:content";
+
+const projects = await getCollection("projects");
+
+const projectID = (title: String) => `project-${title}`;
+---
+
+<Layout title="Welcome">
+    <header class="flex flex-col justify-center min-h-screen gap-5">
+        <h1>Hey, im James!</h1>
+        <p>Website&apos;s? Software? I do it all!</p>
+    </header>
+
+    <!-- <Navbar /> -->
+
+    <h2>About me</h2>
+    <section>Hey, im James! I'm a scottish software developer</section>
+
+    <h2>Skills</h2>
+    <section>
+        <ul>
+            <li>C / C++</li>
+            <li>Rust</li>
+            <li>Python</li>
+            <li>Typescript & Javascript</li>
+            <li>Zig</li>
+            <li>React and Next.JS</li>
+            <li>Astro.JS</li>
+        </ul>
+    </section>
+
+    <h2>Projects & Work</h2>
+    <section class="flex flex-row items-start border-y-2">
+        <div class="w-full">
+            <div class="grow divide-solid divide-y-2 divide-text">
+                {
+                    projects.map(async project => {
+                        const { Content } = await render(project);
+                        return (
+                            <Project
+                                name={project.data.title}
+                                link={projectID(project.id)}
+                            >
+                                <Content />
+                            </Project>
+                        );
+                    })
+                }
+            </div>
+        </div>
+        <div class="p-5 border-l-[2px] border-l-text">
+            <div class="follow">
+                <h3>Table of Contents</h3>
+                {
+                    projects.map(project => (
+                        <div>
+                            <ProjectLink
+                                name={project.data.title}
+                                link={projectID(project.id)}
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+            <script>
+                import { gsap } from "gsap";
+                import { ScrollTrigger } from "gsap/ScrollTrigger";
+                gsap.registerPlugin(ScrollTrigger);
+
+                gsap.to(".follow", {
+                    scrollTrigger: {
+                        trigger: ".follow",
+                        pin: true,
+                        start: "top top",
+                        endTrigger: "html",
+                        end: "bottom top",
+                        toggleActions: "play none none reverse",
+                    },
+                });
+            </script>
+        </div>
+    </section>
+
+    <h2>Other</h2>
+    <section>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas rerum
+            consequuntur corrupti. Dolore fugiat ex deleniti, voluptate soluta
+            nulla nihil quasi beatae libero, perferendis porro, rerum
+            repellendus adipisci reprehenderit nisi commodi laboriosam illum
+            sapiente eveniet temporibus. Deserunt minima illo voluptatibus
+            commodi, maiores neque numquam, tenetur repellat perspiciatis
+            aliquam eum, aspernatur quis eos unde. Voluptatem, fugit. Eius
+            pariatur eaque quo doloribus voluptate reprehenderit ratione eum
+            vel, ab, omnis nihil, deserunt sed error vitae fuga ad minima
+            molestiae nobis sequi itaque nemo ducimus voluptatum ea. Rerum
+            dignissimos modi vitae non vero necessitatibus dicta saepe deserunt
+            corporis quos reiciendis doloribus, omnis, optio eos aliquam ipsam
+            hic sint pariatur repellendus? Delectus reiciendis nostrum dolorum
+            assumenda. Eius qui impedit dolores autem magni atque iure!
+            Aspernatur alias iusto corporis natus, aperiam at, placeat voluptas
+            delectus magni itaque pariatur, voluptatem enim aut molestias
+            explicabo accusamus nobis dolorem quisquam minima reprehenderit
+            commodi assumenda perferendis. Officiis ipsa quaerat molestias
+            explicabo obcaecati unde quas eos aliquam? Sit ullam temporibus
+            commodi impedit inventore consequuntur nulla neque ea, saepe
+            veritatis mollitia laborum iste delectus doloremque. Exercitationem
+            quos nulla quae, sapiente modi alias animi recusandae distinctio
+            rerum? Velit repudiandae distinctio ea dolorum unde illum,
+            repellendus dolor officia. Similique, adipisci, in cupiditate
+            expedita magnam aspernatur et veniam hic labore saepe ipsam
+            asperiores, nulla qui nemo. Quis, cupiditate ipsam? Fuga blanditiis
+            quam odit voluptates dolore architecto impedit assumenda enim
+            quisquam veniam! Impedit facilis sit provident et officia, fugiat
+            similique quia, cum veniam a officiis nostrum sint nulla culpa
+            repellat. Harum vitae magni dolorum, modi assumenda quos quaerat rem
+            nam iusto, earum maxime alias officiis veniam vero saepe sunt? Sed,
+            ullam quis et nesciunt fuga amet quia doloremque culpa assumenda
+            totam ad omnis officia nobis harum expedita dignissimos molestiae
+            voluptas veritatis suscipit libero quibusdam perspiciatis ratione
+            quo? Ullam obcaecati, pariatur necessitatibus corporis aut cum nobis
+            similique, quos cumque quaerat amet distinctio nesciunt expedita
+            ipsam. Quis, quidem rem ex recusandae fugit adipisci unde eligendi
+            laboriosam reprehenderit inventore? Delectus quasi qui, sequi
+            consectetur esse necessitatibus ab in, architecto saepe atque iure
+            itaque et. Minima dolore iure sint, maiores veniam velit enim quam
+            molestias nihil laborum, doloremque officia eaque aliquam deleniti
+            veritatis nam iste. Quidem esse pariatur consectetur? Voluptatem
+            iste quidem iure eius voluptatibus dolore magni, quos, eos
+            cupiditate alias sapiente repellendus. Minus reiciendis voluptatibus
+            harum ratione aliquam officia perspiciatis neque eaque
+            exercitationem cupiditate. Magnam magni ipsa deleniti debitis esse
+            dolore veritatis saepe. Temporibus repellendus voluptatum dicta aut
+            quam porro fuga doloribus, facere, corrupti labore perferendis
+            itaque soluta quia eaque ex dolore provident a suscipit, fugiat
+            dolores? Tenetur quidem quaerat quasi autem ipsam. Neque delectus
+            culpa rerum veniam nesciunt. Perspiciatis ab modi fuga, velit quis
+            impedit, dolorem ut quae quam vel rerum obcaecati? Beatae recusandae
+            unde repudiandae voluptatum quibusdam maxime, doloribus facere,
+            harum quam rerum possimus incidunt commodi officiis deleniti
+            aspernatur culpa repellat itaque illo cum aut saepe! Veritatis,
+            laudantium blanditiis perferendis tempore vel nobis voluptatem,
+            laborum odio adipisci porro quod eaque dolorum molestiae possimus
+            reprehenderit pariatur nisi inventore in temporibus. Repellendus
+            provident inventore sapiente ratione, sint saepe dicta!
+        </p>
+    </section>
+</Layout>

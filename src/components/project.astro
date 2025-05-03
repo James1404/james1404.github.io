@@ -1,0 +1,16 @@
+---
+interface Props {
+    name: string;
+    desc?: string;
+    link: string;
+}
+
+const { name, link } = Astro.props;
+---
+
+<div class="flex items-center gap-5 w-full py-5 pr-5" id={link}>
+    <div>
+        <h3>{name}</h3>
+        <slot />
+    </div>
+</div>

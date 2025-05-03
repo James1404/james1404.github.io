@@ -1,5 +1,3 @@
-import { exec } from "child_process";
-
 type Identifier = {
     type: "Identifier";
     value: string;

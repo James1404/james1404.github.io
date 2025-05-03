@@ -14,4 +14,6 @@ export default defineConfig({
   },
 
   integrations: [react(), mdx()],
+
+  site: "https://james1404.github.io",
 });

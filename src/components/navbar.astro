@@ -3,35 +3,17 @@
 ---
 
 <nav class="w-full flex flex-col items-center bg-background text-center z-50">
-    <div class="flex justify-center py-10 w-[80%]">
+    <div class="flex justify-center py-10 w-[80%] border-b-2 border-b-text">
         <div
             class="flex gap-5 justify-between items-center w-full [&>*]:text-2xl max-sm:flex-col"
         >
             <a class="no-underline" href="/">James Barnfather</a>
             <div class="w-fit flex divide-x-2 divide-text] [&>*]:px-5">
                 <a class="no-underline" href="/">Home</a>
-                <a class="no-underline" href="/projects">Personal Projects</a>
-                <a class="no-underline" href="/work">My Work</a>
+                <a class="no-underline" href="/projects-and-work"
+                    >Projects & Work</a
+                >
             </div>
         </div>
     </div>
-    <hr class="!w-[80%]" />
 </nav>
-
-<script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.to("nav", {
-        scrollTrigger: {
-            trigger: "nav",
-            pin: true,
-            start: "top top",
-            endTrigger: "html",
-            end: "bottom top",
-            toggleActions: "play none none reverse",
-        },
-    });
-</script>

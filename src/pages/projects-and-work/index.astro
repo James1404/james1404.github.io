@@ -1,0 +1,73 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+import Navbar from "../../components/navbar.astro";
+import Project from "../../components/project.astro";
+import ProjectLink from "../../components/project-link.astro";
+
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+
+const projects = await getCollection("projects");
+
+const projectID = (title: String) => `project-${title}`;
+---
+
+<Layout title="Welcome">
+    <header class="flex flex-col justify-center min-h-screen gap-5">
+        <h1>Projects & Work</h1>
+    </header>
+
+    <Navbar />
+
+    <section class="flex flex-row items-start">
+        <div class="w-full">
+            <div class="grow divide-solid divide-y-2 divide-text">
+                {
+                    projects.map(async project => {
+                        const { Content } = await render(project);
+                        return (
+                            <Project
+                                name={project.data.title}
+                                link={projectID(project.id)}
+                            >
+                                <Content />
+                            </Project>
+                        );
+                    })
+                }
+            </div>
+        </div>
+        <div class="p-5 border-l-[2px] border-l-text">
+            <div class="follow">
+                <h3>Table of Contents</h3>
+                {
+                    projects.map(project => (
+                        <div>
+                            <ProjectLink
+                                name={project.data.title}
+                                link={projectID(project.id)}
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+            <script>
+                import { gsap } from "gsap";
+                import { ScrollTrigger } from "gsap/ScrollTrigger";
+                gsap.registerPlugin(ScrollTrigger);
+
+                gsap.to(".follow", {
+                    scrollTrigger: {
+                        trigger: ".follow",
+                        pin: true,
+                        start: "top top",
+                        endTrigger: "html",
+                        end: "bottom top",
+                        toggleActions: "play none none reverse",
+                    },
+                });
+            </script>
+        </div>
+    </section>
+</Layout>

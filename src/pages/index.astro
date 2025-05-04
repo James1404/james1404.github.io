@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-import Navbar from "../components/navbar.astro";
 import Project from "../components/project.astro";
 import ProjectLink from "../components/project-link.astro";
 
@@ -9,6 +8,7 @@ import { getCollection } from "astro:content";
 import { render } from "astro:content";
 import { getEntries } from "astro:content";
 import { getEntry } from "astro:content";
+import DynamicNavbar from "../components/dynamic-navbar.astro";
 
 const projects = await getCollection("projects");
 
@@ -21,7 +21,7 @@ const projectID = (title: String) => `project-${title}`;
         <p>Website&apos;s? Software? I do it all!</p>
     </header>
 
-    <!-- <Navbar /> -->
+    <DynamicNavbar />
 
     <h2>About me</h2>
     <section>Hey, im James! I'm a scottish software developer</section>
@@ -37,58 +37,6 @@ const projectID = (title: String) => `project-${title}`;
             <li>React and Next.JS</li>
             <li>Astro.JS</li>
         </ul>
-    </section>
-
-    <h2>Projects & Work</h2>
-    <section class="flex flex-row items-start border-y-2">
-        <div class="w-full">
-            <div class="grow divide-solid divide-y-2 divide-text">
-                {
-                    projects.map(async project => {
-                        const { Content } = await render(project);
-                        return (
-                            <Project
-                                name={project.data.title}
-                                link={projectID(project.id)}
-                            >
-                                <Content />
-                            </Project>
-                        );
-                    })
-                }
-            </div>
-        </div>
-        <div class="p-5 border-l-[2px] border-l-text">
-            <div class="follow">
-                <h3>Table of Contents</h3>
-                {
-                    projects.map(project => (
-                        <div>
-                            <ProjectLink
-                                name={project.data.title}
-                                link={projectID(project.id)}
-                            />
-                        </div>
-                    ))
-                }
-            </div>
-            <script>
-                import { gsap } from "gsap";
-                import { ScrollTrigger } from "gsap/ScrollTrigger";
-                gsap.registerPlugin(ScrollTrigger);
-
-                gsap.to(".follow", {
-                    scrollTrigger: {
-                        trigger: ".follow",
-                        pin: true,
-                        start: "top top",
-                        endTrigger: "html",
-                        end: "bottom top",
-                        toggleActions: "play none none reverse",
-                    },
-                });
-            </script>
-        </div>
     </section>
 
     <h2>Other</h2>

@@ -3,9 +3,9 @@
 
 @theme {
     --font-sans: "Outfit Variable", "sans-serif";
-    --color-background: #fff;
-    --color-link: #000;
-    --color-text: #000;
+    --color-background: #0a0a0a;
+    --color-link: #dd7d19;
+    --color-text: #f2f2f2;
 }
 
 @layer components {

@@ -1,19 +1,22 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
+import wasm from "vite-plugin-wasm";
+import topLevelAwait from "vite-plugin-top-level-await";
 
-import react from '@astrojs/react';
+import tailwindcss from "@tailwindcss/vite";
 
-import mdx from '@astrojs/mdx';
+import react from "@astrojs/react";
+
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()]
-  },
+    vite: {
+        plugins: [tailwindcss(), wasm(), topLevelAwait()],
+    },
 
-  integrations: [react(), mdx()],
+    integrations: [react(), mdx()],
 
-  site: "https://james1404.github.io",
+    site: "https://james1404.github.io",
 });

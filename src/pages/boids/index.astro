@@ -1,0 +1,97 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+import Navbar from "../../components/navbar.astro";
+---
+
+<Layout title="Welcome">
+    <header class="flex flex-col justify-center min-h-screen gap-5">
+        <h1>Boids Test</h1>
+    </header>
+
+    <Navbar />
+
+    <canvas id="simulation"></canvas>
+
+    <script>
+        import init, { Simulation } from "./pkg";
+
+        await init();
+
+        const canvas = document.getElementById(
+            "simulation"
+        ) as HTMLCanvasElement;
+
+        let seperation_range = 30;
+        let avoid_factor = 0.002;
+
+        let cohesion_range = 80;
+        let centering_factor = 0.0005;
+
+        let alignment_range = 150;
+        let matching_factor = 0.05;
+
+        let min_speed = 7;
+        let max_speed = 15;
+
+        let fov = 210;
+        let force_field_range = 200;
+
+        let size = 5;
+
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+
+        canvas.width = width;
+        canvas.height = height;
+
+        let sim = Simulation.new(canvas, 1000, 10, []);
+
+        let frames_per_second = 30;
+        let previous_time = performance.now();
+
+        let frame_interval = 1000 / frames_per_second;
+        let delta_time_multiplier = 1;
+        let delta_time = 0;
+
+        window.onresize = () => {
+            canvas.width = canvas.parentElement?.clientWidth ?? 0;
+            canvas.height = canvas.parentElement?.clientHeight ?? 0;
+        };
+
+        canvas.onclick = event => {
+            sim.force_field(event.offsetX, event.offsetY);
+            setTimeout(() => {
+                sim.disable_force_field();
+            }, 1000);
+        };
+
+        const draw = (current_time: DOMHighResTimeStamp) => {
+            delta_time = current_time - previous_time;
+            delta_time_multiplier = delta_time / frame_interval;
+            previous_time = current_time;
+
+            sim.draw(
+                delta_time_multiplier,
+                min_speed,
+                max_speed,
+                seperation_range,
+                avoid_factor,
+                alignment_range,
+                matching_factor,
+                cohesion_range,
+                centering_factor,
+                fov,
+                force_field_range,
+                size,
+                255,
+                0,
+                132
+            );
+
+            window.requestAnimationFrame(draw);
+        };
+
+        window.requestAnimationFrame(draw);
+    </script>
+</Layout>

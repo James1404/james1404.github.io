@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-import Navbar from "../../components/navbar.astro";
+import Navbar from "../../components/navbar";
 import Project from "../../components/project.astro";
 import ProjectLink from "../../components/project-link.astro";
 
@@ -13,14 +13,12 @@ const projects = await getCollection("projects");
 const projectID = (title: String) => `project-${title}`;
 ---
 
-<Layout title="Welcome">
+<Layout title="Projects & Work">
     <header class="flex flex-col justify-center min-h-screen gap-5">
         <h1>Projects & Work</h1>
     </header>
 
-    <Navbar />
-
-    <section class="flex flex-row items-start">
+    <section class="flex flex-row items-start border-t-2">
         <div class="w-full">
             <div class="grow divide-solid divide-y-2 divide-text">
                 {

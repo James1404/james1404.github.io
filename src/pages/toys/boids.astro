@@ -1,15 +1,19 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-import Navbar from "../../components/navbar.astro";
+import Navbar from "../../components/navbar";
 ---
 
 <Layout title="Welcome">
     <header class="flex flex-col justify-center min-h-screen gap-5">
-        <h1>Boids Test</h1>
+        <h1>Boids Simulation</h1>
+        <p>
+            This is a boids simulation written in rust and compiled into
+            WebAssembly (WASM).
+        </p>
     </header>
 
-    <Navbar />
+    <Navbar client:load />
 
     <canvas id="simulation"></canvas>
 
@@ -31,8 +35,8 @@ import Navbar from "../../components/navbar.astro";
         let alignment_range = 150;
         let matching_factor = 0.05;
 
-        let min_speed = 7;
-        let max_speed = 15;
+        let min_speed = 5;
+        let max_speed = 10;
 
         let fov = 210;
         let force_field_range = 200;
@@ -55,8 +59,8 @@ import Navbar from "../../components/navbar.astro";
         let delta_time = 0;
 
         window.onresize = () => {
-            canvas.width = canvas.parentElement?.clientWidth ?? 0;
-            canvas.height = canvas.parentElement?.clientHeight ?? 0;
+            canvas.width = screen.width ?? 0;
+            canvas.height = screen.height ?? 0;
         };
 
         canvas.onclick = event => {

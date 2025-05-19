@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import "@fontsource-variable/outfit";
 
+import Navigation from "../components/navigation";
 import Footer from "../components/footer.astro";
 
 interface Props {
@@ -23,9 +24,11 @@ const { title } = Astro.props;
     <body>
         <main
             class="text-text bg-background
-            flex min-h-screen flex-col items-center justify-start
+            flex min-h-screen flex-col items-center justify-center
             max-sm:gap-5"
         >
+            <Navigation />
+
             <slot />
 
             <Footer />
